@@ -11,14 +11,28 @@
       <div class="flex gap-3 flex-1 justify-end">
         <i
           class="fa-solid fa-circle-info text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+          @click="toggleModal"
         ></i>
 
         <i
           class="fa-solid fa-plus text-xl hover:text-weather-secondary duration-150 cursor-pointer"
         ></i>
       </div>
+
+      <BaseModal :modal-active="isShowModal" @close-modal="toggleModal">
+        <div class="text-black">hello</div>
+      </BaseModal>
     </nav>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+import BaseModal from '@/components/BaseModal.vue';
+import { ref } from 'vue';
+
+const isShowModal = ref(false);
+
+const toggleModal = () => {
+  isShowModal.value = !isShowModal.value;
+};
+</script>
