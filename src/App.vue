@@ -1,9 +1,12 @@
-<script setup></script>
+<script setup>
+import SiteNavigation from './components/SiteNavigation.vue';
+</script>
 
 <template>
-  <header>app</header>
-
-  <RouterView />
+  <div class="flex flex-col min-h-screen font-Roboto bg-weather-primary">
+    <SiteNavigation />
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
