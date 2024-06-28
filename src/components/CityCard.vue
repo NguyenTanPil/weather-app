@@ -30,6 +30,4 @@ defineProps({
     default: () => {}
   }
 });
-
-const emits = defineEmits(['goToCityView']);
 </script>
