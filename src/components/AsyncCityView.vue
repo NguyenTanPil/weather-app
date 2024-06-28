@@ -26,12 +26,12 @@
         }}
       </p>
 
-      <p class="text-8xl mb-8">{{ Math.round(weatherData.current.temp) }}&deg</p>
+      <p class="text-8xl mb-8">{{ Math.round(weatherData.current.temp) }}&deg;</p>
 
       <div class="text-center">
         <p>
           Feels like
-          {{ Math.round(weatherData.current.feels_like) }}&deg
+          {{ Math.round(weatherData.current.feels_like) }}&deg;
         </p>
         <p class="capitalize">
           {{ weatherData.current.weather[0].description }}
@@ -130,6 +130,7 @@ const getWeatherData = async () => {
       const utc = hour.dt * 1000 + localOffset;
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
     });
+    await new Promise((res) => setTimeout(res, 1000));
 
     return weatherData.data;
   } catch (error) {

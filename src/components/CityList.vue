@@ -1,20 +1,17 @@
 <template>
+  <div v-for="city in savedCities" :key="city.id">
+    <CityCard :city="city" @click="goToCityView(city)" />
+  </div>
   <p v-if="savedCities.length === 0">
     No locations added. To start tracking a location, search in the field above
   </p>
-  <template v-if="isLoadedCities">
-    <div v-for="city in savedCities" :key="city.id">
-      <CityCard :city="city" @click="goToCityView(city)" />
-    </div>
-  </template>
 </template>
 
 <script setup>
 import axios from 'axios';
-import { onBeforeMount } from 'vue';
 import { ref } from 'vue';
-import CityCard from './CityCard.vue';
 import { useRouter } from 'vue-router';
+import CityCard from './CityCard.vue';
 
 const router = useRouter();
 
@@ -41,6 +38,8 @@ const getCities = async () => {
     savedCities.value[idx].weather = item.data;
   });
 
+  await new Promise((res) => setTimeout(res, 1000));
+
   isLoadedCities.value = true;
 };
 
@@ -52,7 +51,5 @@ const goToCityView = (city) => {
   });
 };
 
-onBeforeMount(() => {
-  getCities();
-});
+await getCities();
 </script>
